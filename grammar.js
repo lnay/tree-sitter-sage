@@ -612,8 +612,10 @@ module.exports = grammar({
       $.keyword_identifier,
       $.string,
       $.concatenated_string,
-      $.integer,
-      $.float,
+      $.sage_integer,
+      $.python_integer,
+      $.sage_real_number,
+      $.python_float,
       $.true,
       $.false,
       $.none,
@@ -987,7 +989,7 @@ module.exports = grammar({
 
     type_conversion: $ => /![a-z]/,
 
-    integer: $ => token(choice(
+    sage_integer: $ => token(choice(
       seq(
         choice('0x', '0X'),
         repeat1(/_?[A-Fa-f0-9]+/),
@@ -1012,7 +1014,36 @@ module.exports = grammar({
       )
     )),
 
-    float: $ => {
+    python_integer: $ => token(choice(
+      seq(
+        choice('0x', '0X'),
+        repeat1(/_?[A-Fa-f0-9]+/),
+        optional(/[Ll]/),
+        "r"
+      ),
+      seq(
+        choice('0o', '0O'),
+        repeat1(/_?[0-7]+/),
+        optional(/[Ll]/),
+        "r"
+      ),
+      seq(
+        choice('0b', '0B'),
+        repeat1(/_?[0-1]+/),
+        optional(/[Ll]/),
+        "r"
+      ),
+      seq(
+        repeat1(/[0-9]+_?/),
+        choice(
+          optional(/[Ll]/), // long numbers
+          optional(/[jJ]/) // complex numbers
+        ),
+        "r"
+      )
+    )),
+
+    sage_real_number: $ => {
       const digits = repeat1(/[0-9]+_?/);
       const exponent = seq(/[eE][\+-]?/, digits)
 
@@ -1023,6 +1054,21 @@ module.exports = grammar({
           seq(digits, exponent)
         ),
         optional(choice(/[Ll]/, /[jJ]/))
+      ))
+    },
+
+    python_float: $ => {
+      const digits = repeat1(/[0-9]+_?/);
+      const exponent = seq(/[eE][\+-]?/, digits)
+
+      return token(seq(
+        choice(
+          seq(digits, '.', optional(digits), optional(exponent)),
+          seq(optional(digits), '.', digits, optional(exponent)),
+          seq(digits, exponent)
+        ),
+        optional(choice(/[Ll]/, /[jJ]/)),
+        "r"
       ))
     },
 

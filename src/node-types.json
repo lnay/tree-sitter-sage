@@ -258,19 +258,11 @@
         "named": true
       },
       {
-        "type": "float",
-        "named": true
-      },
-      {
         "type": "generator_expression",
         "named": true
       },
       {
         "type": "identifier",
-        "named": true
-      },
-      {
-        "type": "integer",
         "named": true
       },
       {
@@ -287,6 +279,22 @@
       },
       {
         "type": "parenthesized_expression",
+        "named": true
+      },
+      {
+        "type": "python_float",
+        "named": true
+      },
+      {
+        "type": "python_integer",
+        "named": true
+      },
+      {
+        "type": "sage_integer",
+        "named": true
+      },
+      {
+        "type": "sage_real_number",
         "named": true
       },
       {
@@ -3018,10 +3026,6 @@
     "named": false
   },
   {
-    "type": "float",
-    "named": true
-  },
-  {
     "type": "for",
     "named": false
   },
@@ -3048,10 +3052,6 @@
   {
     "type": "in",
     "named": false
-  },
-  {
-    "type": "integer",
-    "named": true
   },
   {
     "type": "is",
@@ -3098,12 +3098,28 @@
     "named": false
   },
   {
+    "type": "python_float",
+    "named": true
+  },
+  {
+    "type": "python_integer",
+    "named": true
+  },
+  {
     "type": "raise",
     "named": false
   },
   {
     "type": "return",
     "named": false
+  },
+  {
+    "type": "sage_integer",
+    "named": true
+  },
+  {
+    "type": "sage_real_number",
+    "named": true
   },
   {
     "type": "true",
