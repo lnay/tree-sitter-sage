@@ -1049,7 +1049,7 @@ module.exports = grammar({
 
       return token(seq(
         choice(
-          seq(digits, '.', optional(digits), optional(exponent)),
+          seq(digits, '.', digits, optional(exponent)),
           seq(optional(digits), '.', digits, optional(exponent)),
           seq(digits, exponent)
         ),
