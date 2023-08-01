@@ -262,6 +262,10 @@
         "named": true
       },
       {
+        "type": "generator_index",
+        "named": true
+      },
+      {
         "type": "identifier",
         "named": true
       },
@@ -1611,6 +1615,32 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "generator_index",
+    "named": true,
+    "fields": {
+      "index": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "gen_index",
+            "named": true
+          }
+        ]
+      },
+      "object": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "primary_expression",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -3032,6 +3062,10 @@
   {
     "type": "from",
     "named": false
+  },
+  {
+    "type": "gen_index",
+    "named": true
   },
   {
     "type": "global",

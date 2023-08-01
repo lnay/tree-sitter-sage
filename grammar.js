@@ -588,6 +588,7 @@ module.exports = grammar({
     )),
 
     // Expressions
+    gen_index: $ => /\d+/,
 
     _expression_within_for_in_clause: $ => choice(
       $.expression,
@@ -621,6 +622,7 @@ module.exports = grammar({
       $.none,
       $.unary_operator,
       $.attribute,
+      $.generator_index,
       $.subscript,
       $.call,
       $.list,
@@ -777,6 +779,12 @@ module.exports = grammar({
       field('object', $.primary_expression),
       '.',
       field('attribute', $.identifier)
+    )),
+
+    generator_index: $ => prec(PREC.call, seq(
+      field('object', $.primary_expression),
+      '.',
+      field('index', $.gen_index)
     )),
 
     subscript: $ => prec(PREC.call, seq(
