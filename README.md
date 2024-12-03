@@ -1,3 +1,5 @@
+This repo is a deprecated experiment, you may find https://github.com/havarddj/tree-sitter-sage useful though.
+
 tree-sitter-python
 ==================
 
